@@ -1,0 +1,11 @@
+:root {
+    --theme-background:                #121212;
+    --theme-font-color:                #FFFFFF;
+    --theme-pixiv-blue:                #0096FA;
+    --theme-pixiv-opacity-low:         #0096FA33;
+    --theme-pixiv-opacity-high:        #0096FA66;
+    --theme-pixiv-sucess:              #00F17D;
+    --theme-pixiv-sucess-opacity-low:  #00F17D33;
+    --theme-pixiv-sucess-opacity-high: #00F17D66;
+    --theme-notification-bg:           #00000066;
+}
