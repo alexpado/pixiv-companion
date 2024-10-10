@@ -65,13 +65,14 @@ export default class Interface {
      * @param {boolean} isSuccessful
      */
     static enableButton(button, type, isSuccessful) {
-        button.disabled = false;
-        const cssClass  = isSuccessful ? 'success' : 'error';
+        button.disabled     = false;
+        const cssClass      = isSuccessful ? 'success' : 'error';
+        const temporaryText = isSuccessful ? 'Done !' : 'Error !'
 
         switch (type) {
             case "temporary": {
                 const content    = button.innerHTML;
-                button.innerHTML = 'Done !'
+                button.innerHTML = temporaryText
                 button.classList.add(cssClass);
                 setTimeout(() => {
                     button.classList.remove(cssClass);
@@ -81,7 +82,7 @@ export default class Interface {
             }
             case "lock": {
                 const content    = button.innerHTML;
-                button.innerHTML = 'Done !'
+                button.innerHTML = temporaryText;
                 button.classList.add(cssClass);
                 setTimeout(() => {
                     button.innerHTML = content;
