@@ -1,28 +1,37 @@
-import Extension from "./app/Extension.js";
-import PixivCompanion from "./app/PixivCompanion.js";
-import PixivArtwork from "./app/PixivArtwork.js";
-import HomeTab from "./app/tabs/home.js";
+import HomeTab from "./app/tabs/HomeTab.js";
+import Application from "./app/Application.js";
+import Logger from "./app/Logger.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     (async () => {
-        const extension = new Extension();
-        const pixiv     = new PixivArtwork();
-        const companion = new PixivCompanion(extension, pixiv);
+        Logger.log('popup', '()', 'Loading application...')
+        const application = new Application();
+        Logger.log('popup', '()', 'Loading settings...')
+        await application.settings.load();
 
-        document.body.addEventListener('tick', () => {
-            if(companion.currentTab) {
-                console.log('[Event] Received tick event. Ticking UI.');
-                companion.currentTab.tick();
-            }
-        })
 
-        await extension.settings.load()
-        companion.showTab(HomeTab.name);
+        Logger.log('popup', '()', 'Showing application tab...')
+        await application.showTab(HomeTab.getName());
 
-        if (await pixiv.query()) {
-            await companion.defineBackgroundImage();
+        try {
+            Logger.log('popup', '()', 'Querying browser...')
+            const response              = await Application.queryBrowser('get-data');
+            Logger.log('popup', '()', 'Applying data...')
+            application.content.success = response.success;
+            application.content.message = response.message;
+            application.content.data.setData(response.data);
+        } catch (e) {
+            Logger.log('popup', '()', 'Applying exception...')
+            application.content.success = false;
+            application.content.message = 'Query Error: ' + e.message;
+            application.content.data.setData(null);
         }
 
-        window.companion = companion;
+        if (application.isPixivAvailable()) {
+            Logger.log('popup', '()', 'Loading background...')
+            await application.loadBackgroundImage();
+        }
+
+        window.application = application;
     })();
 });

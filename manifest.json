@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name":             "Pixiv Companion",
   "description":      "Pixiv Tools",
-  "version":          "1.0",
+  "version":          "1.0.1",
   "icons":            {
     "128": "content/assets/images/icon.png"
   },
@@ -14,7 +14,8 @@
   },
   "permissions":      [
     "activeTab",
-    "storage"
+    "storage",
+    "nativeMessaging"
   ],
   "content_scripts":  [
     {
@@ -22,7 +23,7 @@
         "content/assets/scripts/pixiv.net.js"
       ],
       "matches": [
-        "https://www.pixiv.net/*/artworks/*"
+        "<all_urls>"
       ]
     }
   ],

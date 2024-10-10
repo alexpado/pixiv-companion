@@ -1,19 +1,5 @@
-* {
-    padding:    0;
-    margin:     0;
-    box-sizing: border-box;
-}
-
 body {
-    width:            350px;
-    height:           600px;
-
-    background-color: var(--theme-background);
-    color:            var(--theme-font-color);
-
-    position:         relative;
-
-    text-align:       center;
+    text-align: center;
 }
 
 #background {
@@ -39,29 +25,17 @@ main {
     position:       relative;
     z-index:        1;
 
-    border:         2px solid var(--theme-pixiv-blue);
-
+    border:         2px solid var(--xo-color-main);
 
     display:        flex;
     flex-direction: column;
 }
 
-#tab-content {
+#tab-content, main {
     display:        flex;
     flex-direction: column;
     gap:            8px;
     flex-grow:      1;
-}
-
-
-.actions, main {
-    display:        flex;
-    flex-direction: column;
-    gap:            8px;
-}
-
-.actions {
-    justify-content: end;
 }
 
 header {
@@ -76,63 +50,34 @@ header {
     background-repeat:   no-repeat;
 }
 
-.bordered {
-    width:       100%;
-
-    border:      2px solid transparent;
-    color:       white;
-
-    line-height: 35px;
-    font-size:   1.3em;
-    font-weight: bold;
+button, input {
+    width:            100%;
+    border:           none;
+    background-color: var(--xo-color-opacity-low);
+    color:            var(--xo-color-font);
+    padding:          0 1em;
+    line-height:      35px;
+    font-weight:      bold;
 }
 
-.text-input {
-    padding: 0 1em;
+button {
+    cursor: pointer;
 }
 
 .input-group .label {
-    text-align:  left;
-    color:       white;
-    font-size:   1.3em;
-    font-weight: bold;
+    text-align: left;
 }
 
-.notification {
-    background-color: var(--theme-notification-bg);
-    border:           none;
-    padding:          0 1em;
+.bordered {
+    border: 2px solid var(--xo-color-main);
 }
 
-button.bordered, input {
-    background-color: var(--theme-pixiv-opacity-low);
-    border:           2px solid var(--theme-pixiv-blue);
+.bordered:hover {
+    background-color: var(--xo-color-opacity-high);
 }
 
-button.bordered:hover, input:hover {
-    background-color: var(--theme-pixiv-opacity-high);
-    border-color:     var(--theme-font-color);
-    cursor:           pointer;
-}
-
-button.bordered:disabled {
-    filter: grayscale(1);
-    cursor: not-allowed;
-}
-
-button.bordered.shared {
-    background-color: var(--theme-pixiv-sucess-opacity-low);
-    border:           2px solid var(--theme-pixiv-sucess);
-}
-
-button.bordered.shared:hover {
-    background-color: var(--theme-pixiv-sucess-opacity-high);
-}
-
-hr {
-    margin: 8px 0;
-}
-
-.grow {
-    flex-grow: 1;
+button:disabled, input:disabled, .bordered:disabled {
+    opacity: 0.3;
+    filter:  grayscale(1);
+    cursor:  not-allowed;
 }

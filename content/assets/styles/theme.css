@@ -1,11 +1,100 @@
+
 :root {
-    --theme-background:                #121212;
-    --theme-font-color:                #FFFFFF;
-    --theme-pixiv-blue:                #0096FA;
-    --theme-pixiv-opacity-low:         #0096FA33;
-    --theme-pixiv-opacity-high:        #0096FA66;
-    --theme-pixiv-sucess:              #00F17D;
-    --theme-pixiv-sucess-opacity-low:  #00F17D33;
-    --theme-pixiv-sucess-opacity-high: #00F17D66;
-    --theme-notification-bg:           #00000066;
+    --x-color-main:                #0096FA;
+    --x-color-background:          #121212;
+    --x-color-font:                #AEAEAE;
+    --x-color-title:               #FFFFFF;
+
+    --x-color-error:               #AF1D1D;
+    --x-color-warning:             #EF9509;
+    --x-color-success:             #5BB116;
+    --x-color-info:                #0DBEDC;
+
+    --x-color-main-opacity-low:    #0096FA33;
+    --x-color-error-opacity-low:   #AF1D1D33;
+    --x-color-warning-opacity-low: #EF950933;
+    --x-color-success-opacity-low: #5BB11633;
+    --x-color-info-opacity-low:    #0DBEDC33;
+
+    --x-color-main-opacity-high:    #0096FA66;
+    --x-color-error-opacity-high:   #AF1D1D66;
+    --x-color-warning-opacity-high: #EF950966;
+    --x-color-success-opacity-high: #5BB11666;
+    --x-color-info-opacity-high:    #0DBEDC66;
+
+
+    --xo-color-main:                var(--x-color-main);
+    --xo-color-font:                var(--x-color-title);
+    --xo-color-opacity-low:         var(--x-color-main-opacity-low);
+    --xo-color-opacity-high:        var(--x-color-main-opacity-high);
+}
+
+
+* {
+    padding:    0;
+    margin:     0;
+    box-sizing: border-box;
+}
+
+body {
+    width:      350px;
+    height:     600px;
+
+    background: var(--x-color-background);
+    color:      var(--x-color-font);
+    position:   relative;
+    border:     2px solid var(--xo-color-main);
+
+    font-size:  18px;
+}
+
+#app {
+    height:     100%;
+    width:      100%;
+    padding:    1em;
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6, .title {
+    color:       var(--xo-color-font);
+    font-size:   1.3em;
+    font-weight: bold;
+}
+
+.flex {
+    display:        flex;
+    flex-direction: column;
+    gap:            8px;
+}
+
+.error {
+    --xo-color-main:         var(--x-color-error);
+    --xo-color-font:         var(--x-color-error);
+    --xo-color-opacity-low:  var(--x-color-error-opacity-low);
+    --xo-color-opacity-high: var(--x-color-error-opacity-high);
+}
+
+.warning {
+    --xo-color-main:         var(--x-color-warning);
+    --xo-color-font:         var(--x-color-warning);
+    --xo-color-opacity-low:  var(--x-color-warning-opacity-low);
+    --xo-color-opacity-high: var(--x-color-warning-opacity-high);
+}
+
+.success {
+    --xo-color-main:         var(--x-color-success);
+    --xo-color-font:         var(--x-color-success);
+    --xo-color-opacity-low:  var(--x-color-success-opacity-low);
+    --xo-color-opacity-high: var(--x-color-success-opacity-high);
+}
+
+.info {
+    --xo-color-main:         var(--x-color-info);
+    --xo-color-font:         var(--x-color-info);
+    --xo-color-opacity-low:  var(--x-color-info-opacity-low);
+    --xo-color-opacity-high: var(--x-color-info-opacity-high);
+}
+
+.grow {
+    flex-grow: 1;
 }

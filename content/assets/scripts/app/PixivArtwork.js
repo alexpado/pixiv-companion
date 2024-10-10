@@ -1,5 +1,3 @@
-import Extension from "./Extension.js";
-
 /**
  * @typedef {Object} PixivQuery
  * @property {string} artwork.sources.full      The link pointing to the full resolution artwork
@@ -9,6 +7,7 @@ import Extension from "./Extension.js";
  * @property {string} author.profile            The author profile picture
  * @property {string} url                       The original pixiv artwork link
  */
+import Logger from "./Logger.js";
 
 export default class PixivArtwork {
 
@@ -29,13 +28,12 @@ export default class PixivArtwork {
     }
 
     /**
-     * @returns {Promise<boolean>}
+     * @param {PixivQuery|null} data
+     * @returns {boolean}
      */
-    async query() {
+    setData(data) {
 
-        try {
-            const data = await Extension.queryBrowser();
-
+        if (data) {
             this.sources.full    = data.artwork.sources.full;
             this.sources.preview = data.artwork.sources.preview;
             this.description     = data.artwork.description;
@@ -45,11 +43,10 @@ export default class PixivArtwork {
 
             this.available = true;
 
-            console.log('[PixivArtwork] Artwork is now available. Ticking UI.');
-            document.body.dispatchEvent(new CustomEvent("tick"));
-            return true;
 
-        } catch (e) {
+            Logger.log('PixivArtwork', 'setData()', 'Artwork is available.');
+            document.body.dispatchEvent(new CustomEvent("tick"));
+        } else {
             this.sources.full    = null;
             this.sources.preview = null;
             this.description     = null;
@@ -59,9 +56,8 @@ export default class PixivArtwork {
 
             this.available = false;
 
-            console.log('[PixivArtwork] Artwork is not available. Ticking UI.');
+            Logger.log('PixivArtwork', 'setData()', 'Artwork is not available.');
             document.body.dispatchEvent(new CustomEvent("tick"));
-            return false;
         }
     }
 

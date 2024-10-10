@@ -1,18 +1,34 @@
+const REGEXES = {
+    ARTWORK: /https:\/\/www\.pixiv\.net\/.*\/artworks\/\d+/
+}
 
 /**
- * @returns {PixivArtwork|null}
+ * @returns {ChromeTabQuery}
  */
 const extractPageData = () => {
+
+    if (!REGEXES.ARTWORK.test(document.location.href)) {
+        return {
+            success: false,
+            message: 'Please open an artwork.',
+            data:    null
+        };
+    }
+
     const artwork         = document.querySelector('main a[href^="https://i.pximg.net/img-original/img"]')
     const preview         = artwork.querySelector('img');
     const artistContainer = document.querySelector('aside section h2')
     const artistImg       = artistContainer.querySelector('img');
 
     if (!(artwork && preview && artistContainer && artistImg)) {
-        return null;
+        return {
+            success: false,
+            message: 'Incompatible artwork: Only static image are supported.',
+            data:    null
+        };
     }
 
-    return {
+    const data = {
         artwork: {
             sources:     {
                 full:    artwork.href,
@@ -26,10 +42,26 @@ const extractPageData = () => {
         },
         url:     document.location.href
     };
+
+    return {
+        success: true,
+        message: null,
+        data
+    }
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === "getPixivData") {
-        sendResponse(extractPageData());
+    switch (request.action) {
+        case 'get-data':
+            sendResponse(extractPageData())
+            break;
+        default:
+            sendResponse(
+                {
+                    success: false,
+                    message: 'Unknown action',
+                    data:    null
+                }
+            );
     }
 });
