@@ -101,14 +101,12 @@ export default class Interface {
         button.addEventListener('click', () => {
             button.disabled = true;
 
-            let isSuccessful = false;
             try {
                 func();
-                isSuccessful = true;
+                Interface.enableButton(button, type, true);
             } catch (e) {
+                Interface.enableButton(button, type, false);
             }
-
-            Interface.enableButton(button, type, isSuccessful)
         });
     }
 
