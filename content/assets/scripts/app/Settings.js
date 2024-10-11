@@ -17,6 +17,15 @@ export default class Settings {
         this.shares = [];
     }
 
+    /**
+     * Transform the provided pximg link into its proxied version. The proxied version allows to access artwork source
+     * image directly, without playing around with headers.
+     *
+     * @param {string} pixivUrl
+     *      The URL to proxy
+     * @returns {string}
+     *      The proxied URL is the proxy setting was set, the provided link otherwise.
+     */
     getProxiedUrl(pixivUrl) {
         if (this.proxy) {
             return pixivUrl.replace('i.pximg.net', this.proxy);
@@ -26,7 +35,9 @@ export default class Settings {
 
     /**
      * Create a new share that can be then edited.
+     *
      * @returns {Promise<number>}
+     *      A promise resolving to the new share's id
      */
     async createNewShare() {
 
@@ -49,6 +60,14 @@ export default class Settings {
         return id;
     }
 
+    /**
+     * Delete a share, matching with the provided id.
+     *
+     * @param {number} id
+     *      The id of the share to delete.
+     * @returns {Promise<void>}
+     *      A promise resolving when the share has been deleted. Will resolve even if nothing has been deleted.
+     */
     async deleteShare(id) {
         Logger.log('Setting', 'deleteShare()', 'Deleting share with id', id);
         this.shares = this.shares.filter(share => share.id !== id);
@@ -58,8 +77,10 @@ export default class Settings {
     /**
      * Set the proxy and update the settings, if necessary.
      *
-     * @param proxy
+     * @param {string} proxy
+     *      The domain to use as proxy image server.
      * @returns {Promise<void>}
+     *      A promise resolving when the setting has been updated. Will resolve even if nothing as been updated.
      */
     async setProxy(proxy) {
         if (this.proxy !== proxy) {
@@ -70,6 +91,12 @@ export default class Settings {
         }
     }
 
+    /**
+     * Save the settings to the browser.
+     *
+     * @returns {Promise<void>}
+     *      A promise resolving when the settings have been saved.
+     */
     async save() {
         Logger.log('Setting', 'save()', 'Saving preferences...');
         await chrome.storage.sync.set(
@@ -83,6 +110,12 @@ export default class Settings {
         Logger.log('Setting', 'save()', 'Saved.');
     }
 
+    /**
+     * Load the settings from the browser.
+     *
+     * @returns {Promise<void>}
+     *      A promise resolving when the settings have been loaded.
+     */
     async load() {
         Logger.log('Setting', 'save()', 'Loading preferences...');
         const data  = await chrome.storage.sync.get('settings');

@@ -1,8 +1,12 @@
 export default class Interface {
 
     /**
+     * Create a theme button with the provided text.
+     *
      * @param {string} text
+     *      The text that will be used as the button's text.
      * @returns {HTMLButtonElement}
+     *      The button element
      */
     static createButton(text) {
         const button = document.createElement('button');
@@ -12,8 +16,12 @@ export default class Interface {
     };
 
     /**
+     * Create a themed input with the provided text.
+     *
      * @param {string} text
+     *      The text that will be used as the input label text.
      * @returns {{value: string, input: HTMLInputElement, element: HTMLLabelElement}}
+     *      An object giving access to the containing element, the input and a quick getter/setter for the input value.
      */
     static createInput(text) {
         const label = document.createElement('label');
@@ -42,7 +50,10 @@ export default class Interface {
     }
 
     /**
+     * Create a div that will expand in a flex container.
+     *
      * @returns {HTMLDivElement}
+     *      The div element
      */
     static createFiller() {
         const div = document.createElement('div');
@@ -51,7 +62,10 @@ export default class Interface {
     }
 
     /**
+     * Create an HR that will act as a visual separator.
+     *
      * @returns {HTMLHRElement}
+     *      The HR element
      */
     static createSeparator() {
         const hr = document.createElement('hr');
@@ -60,9 +74,15 @@ export default class Interface {
     }
 
     /**
+     * Enable a button with a success state.
+     *
      * @param {HTMLButtonElement} button
+     *      The button to enable.
      * @param {'none'|'lock'|'temporary'} type
+     *      Type for the state display. `lock` will keep the state even after two seconds, whereas `temporary` will
+     *      remove the state after 2 seconds. Both modes will display the state text within the button for 2 seconds.
      * @param {boolean} isSuccessful
+     *      If the action that preceded the button activation was successful or not.
      */
     static enableButton(button, type, isSuccessful) {
         button.disabled     = false;
@@ -93,9 +113,20 @@ export default class Interface {
     }
 
     /**
+     * Add a special click listener to the button which will disable it while the associated action is being executed.
+     * The action is synchronous, and the button will always be enabled instantly if an asynchronous action is used. For
+     * asynchronous actions, please use `handleButtonClickAsync`.
+     *
+     * Once the action is executed, the button will be enabled automatically with either a success state or an error
+     * state, if the action threw an exception.
+     *
      * @param {HTMLButtonElement} button
+     *      The button on which the click listener will be attached.
      * @param {function(): any} func
+     *      The synchronous action to execute within the click listener.
      * @param {'none'|'lock'|'temporary'} type
+     *      Type for the state display. `lock` will keep the state even after two seconds, whereas `temporary` will
+     *      remove the state after 2 seconds. Both modes will display the state text within the button for 2 seconds.
      */
     static handleButtonClickSync(button, func, type = 'none') {
         button.addEventListener('click', () => {
@@ -111,9 +142,19 @@ export default class Interface {
     }
 
     /**
+     * Add a special click listener to the button which will disable it while the associated action is being executed.
+     * The action is asynchronous. For synchronous action, you can use `handleButtonClickSync` instead.
+     *
+     * Once the action is executed, the button will be enabled automatically with either a success state or an error
+     * state, if the action threw an exception.
+     *
      * @param {HTMLButtonElement} button
+     *      The button on which the click listener will be attached.
      * @param {function(): Promise<any>} func
+     *      The asynchronous action to execute within the click listener.
      * @param {'none'|'lock'|'temporary'} type
+     *      Type for the state display. `lock` will keep the state even after two seconds, whereas `temporary` will
+     *      remove the state after 2 seconds. Both modes will display the state text within the button for 2 seconds.
      */
     static handleButtonClickAsync(button, func, type = 'none') {
         button.addEventListener('click', () => {

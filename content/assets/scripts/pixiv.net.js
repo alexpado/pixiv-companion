@@ -3,7 +3,10 @@ const REGEXES = {
 }
 
 /**
+ * Extract the current page data.
+ *
  * @returns {ChromeTabQuery}
+ *      Result of the extraction
  */
 const extractPageData = () => {
 

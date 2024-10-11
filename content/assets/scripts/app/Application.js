@@ -264,6 +264,7 @@ export default class Application {
      * @param {boolean=} spoiler
      *      Define whether the image should be marked as spoiler.
      * @returns {Promise<void>}
+     *      A promise resolving when the currently loaded artwork has been shared.
      */
     async shareArtwork(shareId, spoiler = false) {
         Logger.log('Application', 'shareArtwork()', 'Trying to share to id', shareId);
