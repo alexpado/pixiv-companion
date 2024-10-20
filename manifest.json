@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
   "name":             "Pixiv Companion",
+  "author":           "alexpado",
   "description":      "Pixiv Tools",
-  "version":          "1.0.1",
+  "version":          "1.0.2",
   "icons":            {
     "128": "content/assets/images/icon.png"
   },
@@ -29,5 +30,10 @@
   ],
   "host_permissions": [
     "*://discord.com/api/webhooks/*"
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "pixiv@alexpado.fr"
+    }
+  }
 }
