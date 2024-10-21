@@ -34,7 +34,7 @@ export default class SettingsTab extends AppTab {
         Interface.handleButtonClickSync(this.btnBack, () => this.showTab(HomeTab.getName()));
 
         Interface.handleButtonClickAsync(this.btnCreate, async () => {
-            const id = this.application.settings.createNewShare();
+            const id = await this.application.settings.createNewShare();
             this.showTab(WebhookTab.getName(), {id});
         });
     }
