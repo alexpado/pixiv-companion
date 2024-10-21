@@ -119,7 +119,7 @@ export default class Settings {
     async load() {
         Logger.log('Setting', 'save()', 'Loading preferences...');
         const data  = await chrome.storage.sync.get('settings');
-        this.proxy  = data.settings?.proxy;
+        this.proxy  = data.settings?.proxy ?? '';
         this.shares = data.settings?.shares ?? [];
         Logger.log('Setting', 'save()', 'Loaded.', data.settings);
     }
