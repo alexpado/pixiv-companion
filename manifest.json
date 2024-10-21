@@ -5,12 +5,12 @@
   "description":      "Pixiv Tools",
   "version":          "1.0.3",
   "icons":            {
-    "128": "content/assets/images/icon.png"
+    "180": "content/assets/images/icon.png"
   },
   "action":           {
     "default_popup": "content/popup.html",
     "default_icon":  {
-      "128": "content/assets/images/icon.png"
+      "180": "content/assets/images/icon.png"
     }
   },
   "permissions":      [
