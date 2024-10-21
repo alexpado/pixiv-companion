@@ -3,7 +3,7 @@
   "name":             "Pixiv Companion",
   "author":           "alexpado",
   "description":      "Pixiv Tools",
-  "version":          "1.0.2",
+  "version":          "1.0.3",
   "icons":            {
     "128": "content/assets/images/icon.png"
   },
