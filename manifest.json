@@ -33,7 +33,8 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "pixiv@alexpado.fr"
+      "id": "pixiv@alexpado.fr",
+      "update_url": "https://alexpado.fr/providers/extensions.json"
     }
   }
 }
