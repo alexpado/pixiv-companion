@@ -67,6 +67,14 @@ h1, h2, h3, h4, h5, h6, .title {
     gap:            8px;
 }
 
+.flex-row {
+    flex-direction: row;
+}
+
+.f-center > * {
+    margin: auto;
+}
+
 .error {
     --xo-color-main:         var(--x-color-error);
     --xo-color-font:         var(--x-color-error);

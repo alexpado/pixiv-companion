@@ -50,8 +50,11 @@ header {
     background-repeat:   no-repeat;
 }
 
+input {
+    width: 100%;
+}
+
 button, input {
-    width:            100%;
     border:           none;
     background-color: var(--xo-color-opacity-low);
     color:            var(--xo-color-font);

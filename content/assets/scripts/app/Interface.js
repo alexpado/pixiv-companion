@@ -91,21 +91,25 @@ export default class Interface {
 
         switch (type) {
             case "temporary": {
-                const content    = button.innerText;
+                // Save current content
+                const content    = button.innerHTML;
                 button.innerText = temporaryText
                 button.classList.add(cssClass);
                 setTimeout(() => {
                     button.classList.remove(cssClass);
-                    button.innerText = content;
+                    // Restore content
+                    button.innerHTML = content;
                 }, 2000);
                 break;
             }
             case "lock": {
-                const content    = button.innerText;
+                // Save current content
+                const content    = button.innerHTML;
                 button.innerText = temporaryText;
                 button.classList.add(cssClass);
                 setTimeout(() => {
-                    button.innerText = content;
+                    // Restore content
+                    button.innerHTML = content;
                 }, 2000);
                 break;
             }
