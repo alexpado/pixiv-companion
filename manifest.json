@@ -1,24 +1,34 @@
 {
-  "manifest_version": 3,
-  "name":             "Pixiv Companion",
-  "author":           "alexpado",
-  "description":      "Pixiv Tools",
-  "version":          "1.0.3",
-  "icons":            {
-    "180": "content/assets/images/icon.png"
+  "manifest_version":          3,
+  "name":                      "Pixiv Companion",
+  "author":                    "alexpado",
+  "description":               "Pixiv Tools",
+  "version":                   "1.0.3",
+  "icons":                     {
+    "16":  "content/assets/images/icons/16.png",
+    "32":  "content/assets/images/icons/32.png",
+    "48":  "content/assets/images/icons/48.png",
+    "64":  "content/assets/images/icons/64.png",
+    "96":  "content/assets/images/icons/96.png",
+    "128": "content/assets/images/icons/128.png"
   },
-  "action":           {
+  "action":                    {
     "default_popup": "content/popup.html",
     "default_icon":  {
-      "180": "content/assets/images/icon.png"
+      "16":  "content/assets/images/icons/16.png",
+      "32":  "content/assets/images/icons/32.png",
+      "48":  "content/assets/images/icons/48.png",
+      "64":  "content/assets/images/icons/64.png",
+      "96":  "content/assets/images/icons/96.png",
+      "128": "content/assets/images/icons/128.png"
     }
   },
-  "permissions":      [
+  "permissions":               [
     "activeTab",
     "storage",
     "nativeMessaging"
   ],
-  "content_scripts":  [
+  "content_scripts":           [
     {
       "js":      [
         "content/assets/scripts/pixiv.net.js"
@@ -28,12 +38,12 @@
       ]
     }
   ],
-  "host_permissions": [
+  "host_permissions":          [
     "*://discord.com/api/webhooks/*"
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "pixiv@alexpado.fr",
+      "id":         "pixiv@alexpado.fr",
       "update_url": "https://alexpado.fr/providers/extensions.json"
     }
   }
